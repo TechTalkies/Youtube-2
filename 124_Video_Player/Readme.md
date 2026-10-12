@@ -60,7 +60,7 @@ Microcontrollers need highly specific video formats to maintain smooth framerate
 ---
 
 ## 🛠️ Hardware Requirements
-This code was optimized for the **Matouch ESP32-S3 2.4" Display**, but can be adapted for others. 
+This code was optimized for the [**Matouch ESP32-S3 2.4" Display**](https://www.makerfabs.com/matouch-lite-esp32-s3-spi-resistive-touch-2-4-st7789.html), but can be adapted for others. 
 * **MCU:** ESP32-S3
 * **Display Driver:** ST7789 (Connected via SPI)
 * **Touch Driver:** NS2009 (Connected via I2C)
