@@ -4,7 +4,8 @@
 
 I built this **Puzzle Box** because I wanted a dedicated, immersive, distraction-free handheld console specifically for brain-teasing games. Instead of dealing with clunky buttons or messy interfaces, this project offers a pure, edge-to-edge touch experience with fluid animations and responsive retro sound effects.
 
-The project is built around an **ESP32-S3**, a **480x480 ST7701 RGB touchscreen display**, and an **I2S Audio DAC** for rich, generated PCM sound.
+The project is built around [MaTouch 4 inch ESP32 Display.](https://www.makerfabs.com/esp32-s3-parallel-tft-with-touch-4-inch.html). 
+Use the coupon **TechTalkies-MaTouch4.0** for a $5 discount!
 
 ## Full build video
 [![Watch the video](./thumb2.png)](https://youtu.be/XO6Na3-kmec)
