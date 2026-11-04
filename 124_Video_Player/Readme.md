@@ -33,6 +33,17 @@ You don't need to compile the code yourself! You can flash the pre-built firmwar
 
 ---
 
+## 🔌 Wiring & Pin Connections
+
+| Component | Pin Function | ESP32-S3 GPIO |
+| :--- | :--- | :--- |
+| **I2S Audio (Amplifier)** | BCLK | `GPIO 4` |
+| | LRCK (WS) | `GPIO 5` |
+| | DOUT (DIN) | `GPIO 6` |
+| | Gain | `Gnd` |
+
+---
+
 ## 🎮 Touch Controls (Landscape)
 The screen is divided into invisible zones. Tap or swipe directly on the playing video:
 
