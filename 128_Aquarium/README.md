@@ -1,53 +1,93 @@
-| Supported Targets | ESP32 | ESP32-C2 | ESP32-C3 | ESP32-C5 | ESP32-C6 | ESP32-C61 | ESP32-H2 | ESP32-H21 | ESP32-H4 | ESP32-P4 | ESP32-S2 | ESP32-S3 | ESP32-S31 | Linux |
-| ----------------- | ----- | -------- | -------- | -------- | -------- | --------- | -------- | --------- | -------- | -------- | -------- | -------- | --------- | ----- |
+# ESP32 Aquarium
 
-# Hello World Example
+An animated aquarium demo for a 240 x 240 GC9A01 round TFT display, built with ESP-IDF and LVGL.
 
-Starts a FreeRTOS task to print "Hello World".
+The project combines generated pixel-art sprites, boid-style fish movement, rotating species schools, animated jellyfish and manta rays, bubbles, kelp, and touch interaction.
 
-(See the README.md file in the upper level 'examples' directory for more information about examples.)
+## Features
 
-## How to use example
+- 240 x 240 round-display aquarium animation
+- LVGL with RGB565 rendering
+- Canvas-based fish compositing to reduce per-fish LVGL objects
+- Multiple fish species with individual movement and animated frames
+- Rotating schools of up to three species
+- School-to-school separation with occasional crossing
+- Jellyfish that drift upward in spread-out groups
+- Slower manta ray behavior with two top-view animation frames
+- Natural kelp sway and thin foreground branches
+- Swaying bubbles from two simultaneous streams
+- Static blue background gradient
+- Touch reactions:
+  - Fish flee from a held touch
+  - Fish orbit around the touch point
 
-Follow detailed instructions provided specifically for this example.
+## Hardware
 
-Select the instructions depending on Espressif chip installed on your development board:
-
-- [ESP32 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/stable/get-started/index.html)
-- [ESP32-S2 Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s2/get-started/index.html)
+- [XIAO ESP32-S3](https://www.seeedstudio.com/Seeed-Studio-XIAO-ESP32S3-Plus-p-6361.html?sensecap_affiliate=P9GHEkF&amp;referring_service=link)
+- [Round LCD display](https://www.seeedstudio.com/1-28-Round-Touch-Display-for-Seeed-Studio-XIAO-ESP32.html?sensecap_affiliate=P9GHEkF&amp;referring_service=link)
 
 
-## Example folder contents
+The firmware is configured for 8 MB flash and ESP32-S3 PSRAM.
 
-The project **hello_world** contains one source file in C language [hello_world_main.c](main/hello_world_main.c). The file is located in folder [main](main).
+ 
 
-ESP-IDF projects are built using CMake. The project build configuration is contained in `CMakeLists.txt` files that provide set of directives and instructions describing the project's source files and targets (executable, library, or both).
+## Software
 
-Below is short explanation of remaining files in the project folder.
+- ESP-IDF
+- LVGL 8.3.11
+- Espressif GC9A01 LCD component
+- FreeRTOS
 
-```
+Managed dependencies are listed in [main/idf_component.yml](main/idf_component.yml).
+
+## Project structure
+
+```text
+.
 ├── CMakeLists.txt
-├── pytest_hello_world.py      Python script used for automated testing
-├── main
+├── sdkconfig
+├── main/
 │   ├── CMakeLists.txt
-│   └── hello_world_main.c
-└── README.md                  This is the file you are currently reading
+│   ├── idf_component.yml
+│   └── main.c
+├── managed_components/
+└── build/
 ```
 
-For more information on structure and contents of ESP-IDF projects, please refer to Section [Build System](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/build-system.html) of the ESP-IDF Programming Guide.
+Main application code and sprite data are in [main/main.c](main/main.c).
 
-## Troubleshooting
+## Build
 
-* Program upload failure
+Install ESP-IDF and activate its environment, then run:
 
-    * Hardware connection is not correct: run `idf.py -p PORT monitor`, and reboot your board to see if there are any output logs.
-    * The baud rate for downloading is too high: lower your baud rate in the `menuconfig` menu, and try again.
+```bash
+idf.py set-target esp32s3
+idf.py build
+```
 
-## Technical support and feedback
+The existing [sdkconfig](sdkconfig) already selects the ESP32-S3 target, RGB565 LVGL color depth, 8 MB flash, and PSRAM.
 
-Please use the following feedback channels:
+## Flash
 
-* For technical queries, go to the [esp32.com](https://esp32.com/) forum
-* For a feature request or bug report, create a [GitHub issue](https://github.com/espressif/esp-idf/issues)
+Connect the ESP32-S3 board and replace `PORT` with the serial port used by your device:
 
-We will get back to you as soon as possible.
+```bash
+idf.py -p PORT flash monitor
+```
+
+To exit the serial monitor, press `Ctrl+]`.
+
+## Use
+
+The aquarium starts automatically after boot.
+
+- Hold or touch the display to influence the fish.
+- A touch randomly selects a flee or orbit response.
+- Lifting the finger lets the fish return to normal school movement.
+- Schools cycle through the available species while maintaining at most three active schools.
+
+## Notes
+
+- LCD orientation, RGB order, and panel inversion are configured near the top of [main/main.c](main/main.c).
+- If the displayed colors are incorrect, check `LCD_INVERT_COLOR` and `LCD_RGB_ORDER`.
+- If the touch coordinates or touch detection do not match your board, verify the I2C address, SDA/SCL pins, and touch interrupt pin.
