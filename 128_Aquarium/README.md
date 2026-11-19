@@ -1,8 +1,16 @@
 # ESP32 Aquarium
 
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-Support-29ABE0?logo=kofi&logoColor=white)](https://ko-fi.com/techtalkies) ![platform](https://img.shields.io/badge/platform-ESP32--S3-blue)  ![license](https://img.shields.io/badge/license-MIT-green)
+
 An animated aquarium demo for a 240 x 240 GC9A01 round TFT display, built with ESP-IDF and LVGL.
 
 The project combines generated pixel-art sprites, boid-style fish movement, rotating species schools, animated jellyfish and manta rays, bubbles, kelp, and touch interaction.
+
+[![Ko-fi Support](../support_me_256.png)](https://ko-fi.com/techtalkies)
+
+
+## Full build video
+[![Watch the video](./thumb2.png)](https://youtu.be/XajTXU7A1yA)
 
 ## Features
 
