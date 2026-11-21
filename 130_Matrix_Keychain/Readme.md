@@ -59,7 +59,12 @@ Flash from the[ Tech Talkies Flasher Page.](https://techtalkies.github.io/flash.
 
 ![Screws](./Screws.png)
 
-![Screws](./701635_LiPo.png)
+![Screws](../Images/LiPo_701635_400mAh.png)
+
+![Screws](../Images/SPDT_mini_slide_switch.png)
+
+![Screws](../Images/Tactile_Switch_6x6x4.3.png)
+
 
 ## License
 
